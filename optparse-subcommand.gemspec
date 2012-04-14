@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bodaniel Jeanes"]
   s.autorequire = "optparse/subcommand"
-  s.date = "2012-04-11"
+  s.date = "2012-04-13"
   s.description = "Add subcommand parsing to Ruby's OptionParser class"
   s.email = "me@bjeanes.com"
   s.files = ["LICENSE", "README.md", "lib/optparse", "lib/optparse/subcommand.rb", "spec/optparse", "spec/optparse/subcommand_spec.rb"]
