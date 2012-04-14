@@ -27,7 +27,7 @@ parser = OptionParser.new do |opts|
     options.verbose = verbose
   end
 
-  opts.subcommand 'foo' do do |foo|
+  opts.subcommand 'foo' do |foo|
     options.action = :foo
 
     foo.on '-x' do
@@ -35,6 +35,10 @@ parser = OptionParser.new do |opts|
     end
   end
 end
+
+parser.parse(%w[-v foo -x]) # or ARGV, whatever...
+
+options # => #<OpenStruct verbose=true, action=:foo, action_options=#<OpenStruct x=true>>
 ```
 
 ## License
