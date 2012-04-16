@@ -13,6 +13,7 @@ class OptionParser
       klass.instance_eval do
         alias_method :parse_without_subcommand!, :parse!
         alias_method :parse!, :parse_with_subcommand!
+        public :parse!
       end
     end
 
