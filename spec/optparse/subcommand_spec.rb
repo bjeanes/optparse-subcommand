@@ -38,4 +38,6 @@ describe OptionParser do
   specify { run("-t foo").should == [:t, :foo] }
 
   specify { lambda { run("foo -t") }.should raise_error(OptionParser::InvalidOption )}
+
+  specify { options.to_s.should match(/foo/) }
 end
