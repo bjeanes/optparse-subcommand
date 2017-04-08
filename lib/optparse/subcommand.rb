@@ -20,13 +20,13 @@ class OptionParser
       end
     end
 
-    def parse_with_subcommand!(argv = default_argv)
+    def parse_with_subcommand!(*args)
       subcommand = catch(:subcommand) do
-        return order!(argv) { |sub| throw :subcommand, sub }
+        return order!(*args) { |sub| throw :subcommand, sub }
       end
 
       sub_parser = subcommands[subcommand.to_s]
-      sub_parser.call.send(:parse!, argv) if sub_parser
+      sub_parser.call.send(:parse!, *args) if sub_parser
     end
 
     def summarize_with_subcommand(to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
