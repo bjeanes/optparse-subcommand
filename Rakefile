@@ -67,4 +67,4 @@ namespace :test do
   end
 end
 
-task :default => :spec
+task :default => [ :spec, 'test:stdlib' ]
