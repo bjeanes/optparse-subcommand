@@ -27,7 +27,11 @@ class OptionParser
       end
 
       sub_parser = subcommands[subcommand.to_s]
-      sub_parser.call.send(:parse!, *args) if sub_parser
+      if sub_parser
+        sub_parser.call.parse!(*args)
+      else
+        args.first.unshift(subcommand)
+      end
     end
 
     def summarize_with_subcommand(to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
