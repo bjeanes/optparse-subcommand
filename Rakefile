@@ -41,4 +41,20 @@ end
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
+namespace :test do
+  tag = "v#{RUBY_VERSION.gsub(/\./,'_')}"
+  ruby_dir = "tmp/ruby/#{tag}"
+
+  file ruby_dir do
+    sh "git clone --branch=#{tag} --depth=1 https://github.com/ruby/ruby #{ruby_dir}"
+  end
+
+  require 'rake/testtask'
+  Rake::TestTask.new(:stdlib => ruby_dir) do |t|
+    # ensure subcommand is loaded to catch monkey-patch errors
+    t.test_files = FileList['lib/optparse/subcommand', "#{ruby_dir}/test/optparse/test_*.rb"]
+    t.verbose = true
+  end
+end
+
 task :default => :spec
