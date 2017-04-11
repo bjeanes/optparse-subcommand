@@ -17,6 +17,7 @@ class OptionParser
 
         alias_method :summarize_without_subcommand, :summarize
         alias_method :summarize, :summarize_with_subcommand
+        public :summarize
       end
     end
 
