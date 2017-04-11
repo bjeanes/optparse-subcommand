@@ -30,7 +30,7 @@ task :gemspec do
     s.has_rdoc          = false
 
     s.add_development_dependency "rake", "~> 12.0"
-    s.add_development_dependency "rspec", "2.9.0"
+    s.add_development_dependency "rspec", "2.99.0"
   end
 
   File.open("optparse-subcommand.gemspec", "w") do |file|
