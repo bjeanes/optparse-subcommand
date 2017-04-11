@@ -32,10 +32,9 @@ class OptionParser
 
     def summarize_with_subcommand(to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
       summarize_without_subcommand(to, width, max, indent, &blk)
-      to << "\n"
       subcommands.each do |key, sub_parser|
-        to << indent + key + "\n"
-        sub_parser.call.send(:summarize,to,width,max,indent + "  ",&blk)
+        to << "\n#{indent}#{key}\n"
+        sub_parser.call.summarize(to, width, max, indent + "  ", &blk)
       end
       to
     end
