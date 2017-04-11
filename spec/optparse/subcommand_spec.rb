@@ -31,13 +31,13 @@ describe OptionParser do
     end
   end
 
-  specify { run("-t").should == [:t] }
-  specify { run("foo").should == [:foo] }
-  specify { run("foo -q").should == [:foo, :foo_q] }
-  specify { run("foo bar").should == [:foo] }
-  specify { run("-t foo").should == [:t, :foo] }
+  specify { expect(run("-t")).to eq([:t]) }
+  specify { expect(run("foo")).to eq([:foo]) }
+  specify { expect(run("foo -q")).to eq([:foo, :foo_q]) }
+  specify { expect(run("foo bar")).to eq([:foo]) }
+  specify { expect(run("-t foo")).to eq([:t, :foo]) }
 
-  specify { lambda { run("foo -t") }.should raise_error(OptionParser::InvalidOption )}
+  specify { expect { run("foo -t") }.to raise_error(OptionParser::InvalidOption )}
 
-  specify { options.to_s.should match(/foo/) }
+  specify { expect(options.to_s).to match(/foo/) }
 end
