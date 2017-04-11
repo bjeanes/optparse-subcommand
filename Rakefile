@@ -41,12 +41,8 @@ task :release => :gemspec do
   # TODO
 end
 
-desc "Run specs"
-task :spec do
-  Dir.chdir(File.expand_path(File.dirname(__FILE__))) do
-    exec("bundle exec rspec -Ilib spec")
-  end
-end
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
 
 task :default => :spec
 
