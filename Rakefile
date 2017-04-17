@@ -49,7 +49,13 @@ namespace :test do
   ruby_dir = "tmp/ruby/#{tag}"
 
   file ruby_dir do
-    sh "git clone --branch=#{tag} --depth=1 https://github.com/ruby/ruby #{ruby_dir}"
+    sh "git clone --branch=#{tag} --depth=1 https://github.com/ruby/ruby #{ruby_dir}" do |ok, res|
+      next if ok
+
+      puts "#{res}"
+      tag << '_0'
+      sh "git clone --branch=#{tag} --depth=1 https://github.com/ruby/ruby #{ruby_dir}"
+    end
   end
 
   require 'rake/testtask'
