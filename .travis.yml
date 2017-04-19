@@ -7,3 +7,5 @@ rvm:
   - 2.3.0
   - 2.4.0
   - jruby-19mode
+before_install:
+  - gem update bundler # see https://github.com/travis-ci/travis-ci/issues/3531
