@@ -1,3 +1,7 @@
+require 'bundler/gem_tasks'
+
+Rake::Task[:build].enhance [ :gemspec ]
+
 desc "Generate gemspec"
 task :gemspec do
   require 'rubygems/specification'
