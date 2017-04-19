@@ -1,5 +1,3 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
-
 desc "Generate gemspec"
 task :gemspec do
   require 'rubygems/specification'
