@@ -34,13 +34,7 @@ task :gemspec do
   end
 end
 
-desc "Release"
-task :release => :gemspec do
-  # TODO
-end
-
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
 task :default => :spec
-
