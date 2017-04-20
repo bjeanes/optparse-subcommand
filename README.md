@@ -1,5 +1,7 @@
 # optparse-subcommand
 
+[![Build Status](https://travis-ci.org/bjeanes/optparse-subcommand.svg)](https://travis-ci.org/bjeanes/optparse-subcommand)
+
 This gem extends Ruby's standard library `OptionParser` class to allow popular
 subcommand-style tools (e.g. git).
 

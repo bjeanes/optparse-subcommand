@@ -1,4 +1,6 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
+require 'bundler/gem_tasks'
+
+Rake::Task[:build].enhance [ :gemspec ]
 
 desc "Generate gemspec"
 task :gemspec do
@@ -27,7 +29,7 @@ task :gemspec do
     s.autorequire       = "optparse/subcommand"
     s.has_rdoc          = false
 
-    s.add_development_dependency "rake", "~> 12.0"
+    s.add_development_dependency "rake", "~> 0"
     s.add_development_dependency "rspec", "2.9.0"
   end
 
@@ -36,17 +38,7 @@ task :gemspec do
   end
 end
 
-desc "Release"
-task :release => :gemspec do
-  # TODO
-end
-
-desc "Run specs"
-task :spec do
-  Dir.chdir(File.expand_path(File.dirname(__FILE__))) do
-    exec("bundle exec rspec -Ilib spec")
-  end
-end
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
 
 task :default => :spec
-
