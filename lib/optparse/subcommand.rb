@@ -17,6 +17,7 @@ class OptionParser
 
         alias_method :summarize_without_subcommand, :summarize
         alias_method :summarize, :summarize_with_subcommand
+        public :summarize
       end
     end
 
@@ -26,15 +27,18 @@ class OptionParser
       end
 
       sub_parser = subcommands[subcommand.to_s]
-      sub_parser.call.send(:parse!, *args) if sub_parser
+      if sub_parser
+        sub_parser.call.parse!(*args)
+      else
+        args.first.unshift(subcommand)
+      end
     end
 
     def summarize_with_subcommand(to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
       summarize_without_subcommand(to, width, max, indent, &blk)
-      to << "\n"
       subcommands.each do |key, sub_parser|
-        to << indent + key + "\n"
-        sub_parser.call.send(:summarize,to,width,max,indent + "  ",&blk)
+        to << "\n#{indent}#{key}\n"
+        sub_parser.call.summarize(to, width, max, indent + "  ", &blk)
       end
       to
     end
